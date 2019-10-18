@@ -11,9 +11,6 @@ def execute_test(script):
     print('Se ejecuta la prueba')
     txt = script
 
-    with open(Settings.CYPRESS_PATH + "/cypress/integration/test.js", "w+") as file:
-        file.write(txt)
-
     output = subprocess.call([Settings.ANDROID_HOME+'/platform-tools/adb',txt])
     if output < 0:
         print('error en ejecución de prueba')
