@@ -11,7 +11,7 @@ def execute_test(script):
     print('Se ejecuta la prueba')
     txt = script
 
-    output = subprocess.call([Settings.ANDROID_HOME+'/platform-tools/adb',txt])
+    output = subprocess.call([Settings.ANDROID_HOME+'/platform-tools/adb','monkey',txt])
     if output < 0:
         print('error en ejecución de prueba')
 
