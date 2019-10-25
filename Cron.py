@@ -11,13 +11,13 @@ def execute_test(script):
     print('Se ejecuta la prueba')
     txt = script
 
-    output = subprocess.call([Settings.ANDROID_HOME+'/platform-tools/adb','monkey',txt])
+    output = subprocess.call([Settings.ANDROID_HOME+'/platform-tools/adb','shell','monkey',txt])
     if output < 0:
         print('error en ejecución de prueba')
 
 def process():
     try:
-        sqs_connection = SQSConnection(Settings.AWS_QUEUE_URL_OUT_CYPRESS)
+        sqs_connection = SQSConnection(Settings.AWS_QUEUE_URL_OUT_ADB)
 
         with sqs_connection:
             sqs_connection.receive()
