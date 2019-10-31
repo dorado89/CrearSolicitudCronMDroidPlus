@@ -8,10 +8,8 @@ from threading import Thread
 
 
 def execute_test(script):
-    print('Se ejecuta la prueba')
     txt = script
-
-    output = subprocess.call([Settings.ANDROID_HOME+'/platform-tools/adb','shell','monkey',txt])
+    output = subprocess.call([format(Settings.ANDROID_HOME) + "/platform-tools/adb",'shell','monkey',txt])
     if output < 0:
         print('error en ejecución de prueba')
 
@@ -25,7 +23,7 @@ def process():
                 message_body = sqs_connection.message.get('Body')
                 msg = json.loads(message_body)
                 #Aqui va la conversion del json
-                script = msg['script']
+                script = msg['descripcion']
                 sqs_connection.delete()
                 execute_test(script)
 
