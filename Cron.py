@@ -9,7 +9,7 @@ from threading import Thread
 
 def execute_test(script):
     txt = script
-    output = subprocess.call([format(Settings.ANDROID_HOME) + "/platform-tools/adb",'shell','monkey',txt])
+    output = subprocess.call(['java','-jar','MDroidPlus-1.0.0.jar',txt])
     if output < 0:
         print('error en ejecución de prueba')
 
