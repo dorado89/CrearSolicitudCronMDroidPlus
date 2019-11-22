@@ -9,7 +9,8 @@ from threading import Thread
 
 def execute_test(script):
     txt = script
-    output = subprocess.call(['java','-jar','MDroidPlus-1.0.0.jar',txt])
+    output = subprocess.call(['git', 'clone', txt])
+    output = subprocess.call(['java','-jar','MDroidPlus-1.0.0.jar'])
     if output < 0:
         print('error en ejecución de prueba')
 
