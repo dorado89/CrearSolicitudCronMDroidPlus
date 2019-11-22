@@ -15,7 +15,7 @@ def execute_test(script):
 
 def process():
     try:
-        sqs_connection = SQSConnection(Settings.AWS_QUEUE_URL_OUT_ADB)
+        sqs_connection = SQSConnection(Settings.AWS_QUEUE_URL_OUT_MDROIDPLUS)
 
         with sqs_connection:
             sqs_connection.receive()
