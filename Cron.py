@@ -8,7 +8,10 @@ from SQSConnection import SQSConnection
 
 def execute_test(script,urlapk):
     subprocess.run(['git', 'clone', script])
-    output = subprocess.call(['java','-jar','MDroidPlus-1.0.0.jar','./lib4ast/','./'+script.rsplit('/',1)[-1]],urlapk,'./'+urlapk,'./','false')
+    sleep(60)
+    #outputsrc = subprocess.call(['find','.','src'])
+    #java -jar MDroidPlus-1.0.0.jar ./libs4ast/ ./calendula/Calendula/src/ es.usc.citius.servando.calendula ./output/calendula . false
+    output = subprocess.call(['java' ,'-jar' ,'MDroidPlus-1.0.0.jar' ,'./libs4ast/', './calendula/Calendula/src/', 'es.usc.citius.servando.calendula', './output/calendula', '.' ,'false'])
     if output < 0:
         print('error en ejecución de prueba')
 
@@ -21,7 +24,7 @@ def process():
             if sqs_connection.message is not '':
                 message_body = sqs_connection.message.get('Body')
                 msg = json.loads(message_body)
-                listapruebas = msg[0]["fields"]["pruebas"]
+                listapruebas = msg["pruebas"]
                 script=""
                 urlapk=""
                 for prueba in listapruebas:
