@@ -3,6 +3,9 @@ import datetime
 import Settings
 import json
 import subprocess
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from SQSConnection import SQSConnection
 
 
@@ -12,6 +15,21 @@ def execute_test(script,urlapk):
     #outputsrc = subprocess.call(['find','.','src'])
     #java -jar MDroidPlus-1.0.0.jar ./libs4ast/ ./calendula/Calendula/src/ es.usc.citius.servando.calendula ./output/calendula . false
     output = subprocess.call(['java' ,'-jar' ,'MDroidPlus-1.0.0.jar' ,'./libs4ast/', './calendula/Calendula/src/', 'es.usc.citius.servando.calendula', './output/calendula', '.' ,'false'])
+    # s = smtplib.SMTP(host='your_host_address_here', port=your_port_here)
+    # s.starttls()
+    # s.login(MY_ADDRESS, PASSWORD)
+    # msg = MIMEMultipart()
+    # message = output
+    #
+    # msg['From'] = MY_ADDRESS
+    # msg['To'] = email
+    # msg['Subject'] = "This is TEST"
+    #
+    # msg.attach(MIMEText(message, 'plain'))
+    #
+    # s.send_message(msg)
+    # del msg
+    # s.quit()
     if output < 0:
         print('error en ejecución de prueba')
 
